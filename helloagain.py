@@ -13,10 +13,16 @@ def hello_world():
 
 
 # route with restful
-@app.route('/user/<username>')
+@app.route('/user/<username>/')
 def user(username):
     #reuse variables in your tempalate
-    return render_template('user.html',username=username)
+    if username == "bosse":
+        os = "linux"
+    elif username == "daniel":
+        os = "mac"
+    else:
+        os = "windows"
+    return render_template('user.html',username=username,os=os)
 
 
 @app.route('/sqrt/<int:number>')
