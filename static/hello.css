@@ -16,13 +16,46 @@ a:visited {
 }
 
 a:hover {
-    text-decoration: underline;
+    background-color: rgba(161, 173, 230, 1);
 }
 
-div {
+.main {
     background-color: #C5D0E6;
     padding: 5px;
-    width: 100px;
+    width: 200px;
     text-align: center;
     border-radius: 5px;
+}
+
+li {
+    margin: 5px;
+    padding: 5px;
+    background-color: #a0a0a0;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #616161;
+    list-style: none;
+    color: white;
+}
+
+ul {
+    padding: 0px;
+}
+
+.messageid {
+    color: #f00900;
+    font-size: 12px;
+    float: right;
+    padding-right: 5px;
+}
+
+.submenu {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: black;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 5px;
 }

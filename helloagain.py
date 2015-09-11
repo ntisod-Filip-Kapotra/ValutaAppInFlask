@@ -1,9 +1,15 @@
 from flask import Flask, render_template, request
 
+import forex
 app = Flask(__name__)
 
 
+
+messages = []
+
+
 #default methods is GET
+
 
 
 # ordinary route
@@ -16,13 +22,13 @@ def hello_world():
 @app.route('/user/<username>/')
 def user(username):
     #reuse variables in your tempalate
-    if username == "bosse":
-        os = "linux"
-    elif username == "daniel":
-        os = "mac"
+    if username == "Bosse":
+        os = "Linux"
+    elif username == "Daniel":
+        os = "Mac"
     else:
-        os = "windows"
-    return render_template('user.html',username=username,os=os)
+        os = "Windows"
+    return render_template('user.html', username=username, os=os)
 
 
 @app.route('/sqrt/<int:number>')
@@ -31,30 +37,42 @@ def sqrt(number):
 
 
 # route vid args
-@app.route('/args')
+@app.route('/forex')
 def args():
-    return "malin is %s" % request.args.get("malin","missing")
+
+    tocurrency = request.args.get("to")
+    fromcurrency = request.args.get("from")
+    amount = request.args.get("amount")
+
+    res = forex.convert(fromcurrency,tocurrency,int(amount))
+
+    return str(res)
 
 
 # method post (and get)
 @app.route('/message',methods = ['GET', 'POST'])
 def message():
+
     if request.method == 'POST':
 
-        newmessage = request.form.get('message')
+        if len(messages) == 0:
+            id=1
+        else:
+            id = messages[-1]['id'] + 1
 
-        return newmessage
+        newmessage = {'id':id,'text':request.form.get('message')}
+        messages.append(newmessage)
+
+        return render_template("messages.html", messages=messages)
 
     elif request.method == 'GET':
 
-        return "write a form"
+        return render_template("messages.html", messages=messages)
     else:
 
         return "unsupported method"
 
 
-
-
 if __name__ == '__main__':
     app.debug=True
-    app.run()
+    app.run(host="0.0.0.0")

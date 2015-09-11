@@ -1,10 +1,18 @@
 {% extends 'layout.html' %}
 
 {% block body  %}
-    <div>
+    <div class="main">
         <h1>Index</h1>
-        <p><a href="/user/Bosse/">User Bosse</a></p>
-        <p><a href="/user/Daniel/">User Daniel</a></p>
-        <p><a href="/user/Alla%20andra/">Alla andra</a></p>
+        <div class="submenu">
+            <h2>Pages</h2>
+            <p><a href="/message">Messageboard</a></p>
+            <p><a href="/forex">Exchange</a></p>
+        </div>
+        <div class="submenu">
+            <h2>Users</h2>
+            <p><a href="/user/Bosse/">User Bosse</a></p>
+            <p><a href="/user/Daniel/">User Daniel</a></p>
+            <p><a href="/user/Alla%20andra/">Alla andra</a></p>
+        </div>
     </div>
 {%  endblock  %}
